@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Color Palette Generator</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 30px;
+      }
+      .palette {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+      .color-box {
+        width: 100px;
+        height: 100px;
+        margin: 5px;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 1em;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Color Palette Generator</h1>
+    <div class="palette" id="palette"></div>
+    <button onclick="generatePalette()">Generate Palette</button>
+
+    <script>
+      function generatePalette() {
+        const paletteContainer = document.getElementById("palette");
+        paletteContainer.innerHTML = ""; // Clear existing palette
+
+        for (let i = 0; i < 5; i++) {
+          const color = getRandomColor();
+          const colorBox = document.createElement("div");
+          colorBox.classList.add("color-box");
+          colorBox.style.backgroundColor = color;
+          colorBox.title = color;
+          colorBox.onclick = function () {
+            copyToClipboard(color);
+          };
+          paletteContainer.appendChild(colorBox);
+        }
+      }
+
+      function getRandomColor() {
+        const letters = "0123456789ABCDEF";
+        let color = "#";
+        for (let i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
+
+      function copyToClipboard(color) {
+        navigator.clipboard.writeText(color).then(() => {
+          alert(`Color ${color} copied to clipboard!`);
+        });
+      }
+    </script>
+  </body>
+</html>
