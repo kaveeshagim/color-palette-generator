@@ -8,27 +8,54 @@
       body {
         font-family: Arial, sans-serif;
         text-align: center;
-        margin-top: 30px;
-      }
-      .palette {
+        margin: 0;
+        height: 100vh;
+        width: 100vw;
         display: flex;
         justify-content: center;
+        align-items: center;
+        background-color: #f4f4f4;
+        overflow: hidden;
+      }
+      .container {
+        width: 100%;
+        margin: 10px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: relative;
+        border: 20px solid red;
+      }
+      h1 {
+        font-size: 2em;
         margin-bottom: 20px;
       }
+      #palette {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr); /* Creates 5 equal columns */
+        gap: 10px; /* Adds space between color boxes */
+        width: 100vw; /* Ensures it fills the entire viewport width */
+        height: 100vh; /* Ensures it fills the entire viewport height */
+        overflow: hidden; /* Prevents overflow of color boxes */
+        margin: 0 auto; /* Centers the grid in the container */
+        padding: 20px; /* Adds padding around the grid */
+      }
       .color-box {
-        width: 100px;
-        height: 100px;
-        margin: 5px;
+        height: 100%; /* Ensures the box takes up the full height of the grid cell */
         border-radius: 10px;
         cursor: pointer;
       }
       button {
+        position: absolute;
+        top: 50px;
         padding: 10px 20px;
         font-size: 1em;
         background-color: #4caf50;
         color: white;
         border: none;
         cursor: pointer;
+        margin-top: 20px;
       }
       button:hover {
         background-color: #45a049;
@@ -36,9 +63,12 @@
     </style>
   </head>
   <body>
-    <h1>Color Palette Generator</h1>
-    <div class="palette" id="palette"></div>
-    <button onclick="generatePalette()">Generate Palette</button>
+    <div class="container">
+      <div id="palette">
+        <!-- Color boxes will be generated here -->
+      </div>
+      <button onclick="generatePalette()">Generate Palette</button>
+    </div>
 
     <script>
       function generatePalette() {
